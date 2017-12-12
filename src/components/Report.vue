@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row main-header" href="#">
           <div class="col-lg-4 col-md-4 col-sm-4">
-            <router-link class="btn btn-warning" :to="{ name: 'cities'}">Add Cities</router-link>
+            <router-link class="btn btn-danger" :to="{ name: 'cities'}">Back to Cities</router-link>
           </div>
           <div class="col-lg-4 col-md-4 col-sm-4 text-center">{{cityName.toUpperCase()}}</div>
           <div class="col-lg-4 col-md-4 col-sm-4 text-center">
@@ -15,20 +15,18 @@
       </div>
     </nav>
     <div class="container">
-      <div class="row text-right">
-        <a class="btn" v-on:click="gridStyle = true" :class="{ 'btn-primary': gridStyle }">Grid</a>
-        <a class="btn" v-on:click="gridStyle = false" :class="{ 'btn-primary': !gridStyle }">List</a>
-      </div>
-      <div class="fs-20 fw-bold">Current weather report of selected date and city:</div>
+      
+      <div class="fs-20 fw-bold">Weather forecast of selected date and city:</div>
       <div class="row main-card p-0 m-0">
+        <div class="col-lg-4 temp-current text-center fs-40">{{selectedCity.current | filterTemp(selectedCity.current)}}&deg;c</div>
         <div class="col-lg-4 text-center fs-20 fw-bold">
         <div>
-          <div class="temp-main">{{selectedCity.date | moment('MMMM Do YYYY, h:mm:ss a')}}</div>
+          <div class="temp-main">{{selectedCity.date | moment('MM/DD/YYYY, h:mm:ss a')}}</div>
           <div class="temp p-0">{{selectedCity.type}}</div>
         </div>
         <img class="main-icon" :src='"http://openweathermap.org/img/w/" + selectedCity.icon + ".png"' alt="">
         </div>
-        <div class="col-lg-4 temp-current text-center fs-60">{{selectedCity.current | filterTemp(selectedCity.current)}}&deg;c</div>
+        
         <div class="col-lg-4 text-center">
           <div class="temp">
           {{selectedCity.min | filterTemp(selectedCity.min)}}&deg;c min
@@ -36,15 +34,15 @@
           </div>
         </div>
       </div>
-      <div class="fs-20 fw-bold">Weather report for every 3 hrours for 5 days of selected city:</div>
+      <div class="fs-20 fw-bold">Forecast of next 3 hours for 5 days in selected city:</div>
       <div class="row pt-20">
-        <div class="pt-20 cursor-pointer" :class="{'col-lg-12': !gridStyle, 'col-lg-3 col-md-3 col-sm-3': gridStyle }" v-on:click="changeTime(report)" v-for="(report, index) in reports">
+        <div class="pt-20 cursor-pointer" :class="{'col-lg-12': !gridStyle, 'col-lg-4 col-md-4 col-sm-4': gridStyle }" v-on:click="changeTime(report)" v-for="(report, index) in reports">
           <div class="row card" :class="{'bg-active': selectedCity.date === report.date }">
             <div class="col-lg-4 p-0">
-              <div class="date-class" :class="{'bg-active': selectedCity.date === report.date }">{{report.date | moment('MMMM Do YYYY, h:mm:ss a')}}</div>
-              <img class="icon-class" :src='"http://openweathermap.org/img/w/" + report.icon + ".png"' alt="">
+              <div class="date-class" :class="{'bg-active': selectedCity.date === report.date }">{{report.date | moment('MM/DD/YYYY, h:mm:ss a')}}</div>              
             </div>
-            <div class="col-lg-4 pt-20">{{report.current | filterTemp(report.current) }}&deg;c</div>
+            <div class="col-lg-4 pt-20">  &nbsp; &nbsp; &nbsp; {{report.current | filterTemp(report.current) }}&deg;c <br> <img class="icon-class" :src='"http://openweathermap.org/img/w/" + report.icon + ".png"' alt=""></div>
+
             <div class="col-lg-4 pt-20" >
               <div> {{report.min | filterTemp(report.min)}}&deg;c min</div>
               <div>{{report.max | filterTemp(report.max)}}&deg;c max</div>
@@ -133,6 +131,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.navbar-inverse{
+background-color: cadetblue !important;
+border-color: cadetblue;
+}
 .main-header {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -146,23 +148,25 @@ export default {
   font-weight: bold;
   font-size: 16px;
   padding: 5px;
-  color: #727d76;
+  color: #b4b350;
+  height: 150px;
+  border-radius: 10px;
 }
 .main-card {
-  background-color: rgb(37, 66, 129);
+  background-color:dodgerblue;
   border: 1px solid grey;
   padding: 20px 0px !important;
   margin: 30px 1px !important;
+  border-radius: 20px;
 }
 .date-class {
-  border: 1px solid grey;
+  
   padding: 2px 8px;
-  font-size: 10px;
-  background-color: #d6e3d6;
+ 
 }
 .icon-class {
-  width: 40px;
-  height: 40px;
+  width: 70px;
+  height: 70px;
 }
 .main-icon {
   width: 100px;
@@ -172,13 +176,13 @@ export default {
   font-size: 18px;
 }
 .temp {
-  font-size: 40px !important;
+  font-size: 30px !important;
   font-weight: bold;
   padding-top: 50px;
   color:#b4b350;
 }
 .temp-current {
-  font-size: 150px !important;
+  font-size: 100px !important;
   color:#f5eaea;
 }
 .temp-main {
@@ -186,7 +190,7 @@ export default {
   color:#94d24c;
 }
 .bg-active {
-  background-color: #497158;
+  background-color: silver;
   color: #fff;
 }
 </style>

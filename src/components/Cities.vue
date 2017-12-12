@@ -1,41 +1,39 @@
 <template>
   <div class="cities">
     <nav class="navbar navbar-inverse text-center">
-      <div class="main-header" href="#">Weather Forecast</div>
+      <div class="main-header" href="#">Weather App</div>
     </nav>
     <div v-show="error" class="alert alert-danger alert-dismissable">
       <a class="close" v-on:click="error = null">&times;</a>
       <strong>Danger!</strong>{{error}}
     </div>
     <div class="container">
-    <div class="row header">Please add Cities which you want to track for weather information:</div>
+    <div class="row header">Add a city:</div>
     <div class="row pt-20">
-      <div class="col-lg-9 col-md-9 col-sm-9">
+      <div class="col-lg-3 col-md-3 col-sm-3">
         <input class="form-control" type="text" v-model= "city">
       </div>
-        <div class="col-lg-3 col-md-3 col-sm-3">
-        <button class="btn btn-primary btn-block" :disabled="!city" v-on:click="addCities(city, true)">Add City</button>
+        <div class="col-lg-2 col-md-2 col-sm-2">
+        <button class="btn btn-primary btn-block" :disabled="!city" v-on:click="addCities(city, true)">Enter City</button>
       </div>
     </div>
     <div class="row pt-20 pl-20">
-      <table class="table" v-if="getCities && getCities.length > 0">
+      <table class="table table-striped table-bordered" v-if="getCities && getCities.length > 0">
        <thead>
          <tr>
-           <th>City Name</th>
-           <th>Location</th>
-           <th>Action</th>
+           <th>City </th>
+           <th>Forecast</th>
            <th></th>
          </tr>
        </thead>
        <tbody>
          <tr v-for="(citi, index) in getCities">
            <td class="pt-10">{{citi.city}}</td>
-           <td>{{citi.location}}</td>
            <td class="">
-             <button class="btn btn-link" v-on:click="changeRoute(citi.city)">Full forecast</button>
+             <button class="btn btn-link" v-on:click="changeRoute(citi.city)">Click here</button>
            </td>
            <td class="text-right pr-60">
-             <button class="btn btn-link color-red" v-on:click="deleteCity(index)">Delete</button>
+             <button class="btn btn-link color-red" v-on:click="deleteCity(index)">Remove</button>
            </td>
          </tr>
        </tbody>
@@ -97,6 +95,10 @@ export default {
   margin-bottom: 20px;
   color: #fff;
   font-size: 27px;
+}
+.navbar-inverse{
+background-color: cadetblue !important;
+border-color: cadetblue;
 }
 .enter-label {
   padding-top: 3px;
