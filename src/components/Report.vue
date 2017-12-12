@@ -16,8 +16,8 @@
     </nav>
     <div class="container">
       
-      <div class="fs-20 fw-bold">Weather forecast of selected date and city:</div>
-      <div class="row main-card p-0 m-0">
+      <!--<div class="fs-20 fw-bold">Weather forecast of selected date and city:</div>-->
+      <!--<div class="row main-card p-0 m-0">
         <div class="col-lg-4 temp-current text-center fs-40">{{selectedCity.current | filterTemp(selectedCity.current)}}&deg;c</div>
         <div class="col-lg-4 text-center fs-20 fw-bold">
         <div>
@@ -33,7 +33,7 @@
           <div>&nbsp{{selectedCity.max | filterTemp(selectedCity.max)}}&deg;c max</div>
           </div>
         </div>
-      </div>
+      </div>-->
       <div class="fs-20 fw-bold">Forecast of next 3 hours for 5 days in selected city:</div>
       <div class="row pt-20">
         <div class="pt-20 cursor-pointer" :class="{'col-lg-12': !gridStyle, 'col-lg-4 col-md-4 col-sm-4': gridStyle }" v-on:click="changeTime(report)" v-for="(report, index) in reports">
