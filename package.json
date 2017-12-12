@@ -2,7 +2,7 @@
   "name": "cities",
   "version": "1.0.0",
   "description": "get weather report",
-  "author": "Sanjay Nellutla <sanjay.nellutla@fissionlabs.in>",
+  "author": "shivashankar Galla <shivasajjan12@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
