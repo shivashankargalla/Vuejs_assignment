@@ -1,0 +1,4 @@
+module.exports = {
+  CITIES_UPDATE: 'CITIES_UPDATE',
+  CITIES_DELETE: 'CITIES_DELETE',
+};
